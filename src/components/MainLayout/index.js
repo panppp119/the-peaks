@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet'
 
+import logo from 'assets/images/logo.svg'
+
 import * as ML from './main_layout.style'
 
 const MainLayout = (props) => {
@@ -17,7 +19,10 @@ const MainLayout = (props) => {
 
       <ML.Header>
         <ML.Container>
-          <ML.Logo to='/'>Logo</ML.Logo>
+          <ML.Logo to='/'>
+            <img src={logo} alt='the-peaks-logo' />
+          </ML.Logo>
+
           <div className='search'>Search</div>
         </ML.Container>
       </ML.Header>

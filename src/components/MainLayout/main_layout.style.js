@@ -10,7 +10,7 @@ export const Container = styled.div`
   max-width: 1110px;
   width: 100%;
   margin: auto;
-  display: flex;
+  position: relative;
 `
 
 export const Header = styled('header')`
@@ -31,14 +31,18 @@ export const Logo = styled(Link)`
     color: var(--white);
     background: none;
   }
+
+  img {
+    height: calc(120px - (35px * 2));
+    padding: 35px 0;
+  }
 `
 
 export const Content = styled.div`
   width: 100%;
-  height: 1500px;
+  height: calc(100% - (120px + 220px + 100px));
   background-color: var(--white);
-  padding-top: 44px;
-  paddding-bottom: 100px;
+  padding: 50px 0;
 `
 
 export const Footer = styled('footer')`
