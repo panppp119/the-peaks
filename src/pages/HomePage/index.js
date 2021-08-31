@@ -8,6 +8,8 @@ import { getArticles } from 'api/article'
 import { LoadingContext } from 'contexts/loadingContext'
 import * as CONST from 'constants/loadingConstant'
 
+import * as HP from './homePage.style'
+
 const initialArticles = {
   news: [],
   sport: [],
@@ -31,24 +33,29 @@ const HomePage = () => {
 
     sections.map(async (section, index) => {
       if (sections.length === index + 1) {
-        const data = (await getList(section)) || []
-        data.length > 0 &&
+        const list = (await getList(section)) || []
+
+        list.length > 0 &&
           dispatch({ type: CONST.STOP_LOADING, loading: false })
       } else {
-        getList(section)
+        await getList(section)
       }
     })
   }, [])
 
   const getList = async (section) => {
     const { type, pageSize } = section
-    const params = { section: type, pageSize, orderBy: 'newest' }
+    const params = {
+      section: type,
+      pageSize,
+      orderBy: 'newest',
+      showFields: 'thumbnail',
+    }
 
-    const data = await getArticles(params)
+    const list = await getArticles(params)
+    setArticles((oldArticles) => ({ ...oldArticles, [type]: list }))
 
-    setArticles((oldArticles) => ({ ...oldArticles, [type]: data }))
-
-    return data
+    return list
   }
 
   const title = (type, name) => {
@@ -71,11 +78,25 @@ const HomePage = () => {
             {loading ? (
               <Loader />
             ) : (
-              <div className='articles' style={{ display: 'flex' }}>
+              <HP.Articles>
                 {articles[type].map((article, index) => {
-                  return <Card key={index} />
+                  const detail = {
+                    title: article.webTitle,
+                    image: article.fields?.thumbnail,
+                    path: article.id,
+                    type,
+                  }
+
+                  return (
+                    <Card
+                      key={index}
+                      detail={detail}
+                      width={350}
+                      height={347}
+                    />
+                  )
                 })}
-              </div>
+              </HP.Articles>
             )}
           </div>
         )
