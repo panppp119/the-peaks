@@ -1,9 +1,17 @@
+import { useContext } from 'react'
+
 import MainLayout from 'components/MainLayout'
+import Card from 'components/Card'
+import { BookmarkContext } from 'contexts/bookmarkContext'
 
 const BookmarkPage = () => {
+  const { bookmarks } = useContext(BookmarkContext)
+
   return (
     <MainLayout title='Bookmark'>
-      <h1>Bookmark</h1>
+      {bookmarks.map((bookmark, index) => {
+        return <Card key={index} />
+      })}
     </MainLayout>
   )
 }
