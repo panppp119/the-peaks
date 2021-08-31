@@ -12,7 +12,19 @@ const Container = styled(Link)`
   width: ${({ custom }) => (custom.width ? `${custom.width}px` : '200px')};
   height: ${({ custom }) => (custom.height ? `${custom.height}px` : '200px')};
   position: relative;
-  border-bottom: 3px solid var(--error);
+  border-bottom: 3px solid
+    ${({ custom }) => {
+      switch (custom.type) {
+        case 'sport':
+          return 'var(--error)'
+        case 'culture':
+          return 'var(--warning)'
+        case 'lifeandstyle':
+          return 'var(--blue)'
+        default:
+          return 'var(--error)'
+      }
+    }};
 `
 
 const Media = styled.div`
@@ -50,7 +62,10 @@ const Card = (props) => {
   const path = detail?.path.replaceAll('/', '_')
 
   return (
-    <Container custom={{ image: detail?.image, width, height }} to={path}>
+    <Container
+      custom={{ image: detail?.image, width, height, type: detail?.type }}
+      to={path}
+    >
       {!detail?.image && (
         <Media>
           <img src={logo} alt='logo' />
