@@ -1,6 +1,6 @@
 import { createContext, useReducer, useEffect } from 'react'
 
-import bookmarkReducer from 'reducers/bookmarkReducer'
+import { bookmarkReducer } from 'reducers/bookmarkReducer'
 
 export const BookmarkContext = createContext([])
 
@@ -14,9 +14,9 @@ const BookmarkContextProvider = (props) => {
   useEffect(() => {}, [bookmarks])
 
   return (
-    <BookmarkContext value={{ bookmarks, dispatch }}>
+    <BookmarkContext.Provider value={{ bookmarks, dispatch }}>
       {props.children}
-    </BookmarkContext>
+    </BookmarkContext.Provider>
   )
 }
 

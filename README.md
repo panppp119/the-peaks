@@ -20,7 +20,6 @@ yarn install
 ### Set up ENV
 
 ```shell
-REACT_APP_NEWS_URL=https://content.guardianapis.com
 REACT_APP_NEWS_KEY=1a3750ac-61b2-4ad0-a8c8-34cf5c8b255b
 ```
 
