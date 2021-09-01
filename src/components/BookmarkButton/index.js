@@ -1,4 +1,4 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import styled from 'styled-components'
 
 import { ReactComponent as BookmarkIcon } from 'assets/images/bookmark-icon.svg'
@@ -14,7 +14,6 @@ const Button = styled('button')`
   border: none;
   border-radius: 4px;
   padding: 5px 10px;
-  margin-bottom: 20px;
 
   svg {
     margin-right: 10px;
@@ -22,17 +21,11 @@ const Button = styled('button')`
   }
 `
 
-const BookmarkButton = () => {
-  const [type, setType] = useState('add')
-
-  const onButtonClick = (e) => {
-    e.preventDefault()
-    setType((oldType) => (oldType === 'add' ? 'remove' : 'add'))
-  }
-
+const BookmarkButton = ({ type, onClick }) => {
   return (
-    <Button onClick={onButtonClick}>
-      <BookmarkIcon type={type} /> {`${type.toUpperCase()}`} BOOKMARK
+    <Button onClick={onClick}>
+      <BookmarkIcon type={type} /> {`${type ? type.toUpperCase() : 'VIEW'}`}{' '}
+      BOOKMARK
     </Button>
   )
 }

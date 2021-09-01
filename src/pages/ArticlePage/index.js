@@ -28,14 +28,14 @@ const ArticlePage = () => {
     dispatch({ type: CONST.IS_LOADING, loading: true })
 
     const id = params.id.replaceAll('_', '/') || ''
-    const data = await getArticle(id)
+    const data = await getArticle(id, { 'show-fields': 'body,main,headline' })
 
     setArticle(data)
     dispatch({ type: CONST.STOP_LOADING, loading: false })
   }
 
   return (
-    <MainLayout title='Article1'>
+    <MainLayout title={article.webTitle}>
       {loading ? (
         <Loader />
       ) : (
@@ -45,7 +45,7 @@ const ArticlePage = () => {
               <BookmarkButton />
               <p>{moment(article.webPublicationDate).format(dateFormat)}</p>
               <h2>{article.webTitle}</h2>
-              <h4>{article.fields?.trailText}</h4>
+              <h4>{article.fields?.headline}</h4>
             </AP.ContentHeader>
           </AP.Content>
 

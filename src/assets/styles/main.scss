@@ -1,7 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 
-@import './colors';
-@import './typography';
+* {
+  --primary: #09357B;
+  --secondary: #0D47A1;
+
+  --black: #000000;
+  --white: #FFFFFF;
+  --blue: #2196F3;
+  --gray: rgba(0, 0, 0, 0.5);
+
+  --success: #388E3C;
+  --error: #D32F2F;
+  --warning: #FFCA28;
+
+  --search-icon: #FAFAFA;
+
+  --h1: 48px;
+  --h2: 34px;
+  --h3: 24px;
+  --h4: 20px;
+  --h5: 14px;
+
+  --default-font-size: 14px;
+
+  --grid-gap: 30px;
+}
 
 html, body, #root {
   width: 100%;

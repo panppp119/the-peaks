@@ -1,19 +1,18 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  --gray: rgba(0, 0, 0, 0.5);
-`
+export const Container = styled.div``
 
 export const Content = styled.div`
   display: grid;
   grid-template-columns: 60% auto;
-  grid-column-gap: 30px;
+  grid-column-gap: var(--grid-gap);
 `
 
 export const ContentHeader = styled.div`
   p {
     color: var(--gray);
     margin-bottom: 10px !important;
+    margin-top: 20px !important;
   }
 
   h4 {

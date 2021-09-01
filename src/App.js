@@ -31,8 +31,8 @@ const App = () => {
           <BookmarkContextProvider>
             <Switch>
               <Route exact path='/' component={HomePage} />
-              <Route exact path='/:id' component={ArticlePage} />
               <Route exact path='/bookmark' component={BookmarkPage} />
+              <Route exact path='/:id' component={ArticlePage} />
             </Switch>
           </BookmarkContextProvider>
         </LoadingContextProvider>
