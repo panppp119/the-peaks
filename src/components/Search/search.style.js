@@ -3,13 +3,13 @@ import styled from 'styled-components'
 export const Container = styled.div`
   position: absolute;
   right: 0;
-  bottom: 4px;
+  bottom: 1px;
   border-bottom: 2px solid var(--white);
   width: 90px;
   height: 40px;
   cursor: pointer;
   background-color: rgba(33, 83, 163, 0);
-  transition: width 1s, background-color 1s;
+  transition: width 0.5s, background-color 0.5s;
 
   svg {
     fill: #fafafa;

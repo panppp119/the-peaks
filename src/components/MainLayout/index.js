@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import Search from 'components/Search'
 import logo from 'assets/images/logo.svg'
 
-import * as ML from './main_layout.style'
+import * as ML from './mainLayout.style'
 
 const MainLayout = (props) => {
   const { children, title } = props
