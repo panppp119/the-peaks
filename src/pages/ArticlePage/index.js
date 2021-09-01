@@ -1,15 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useRouteMatch } from 'react-router-dom'
 import HtmlParser from 'react-html-parser'
 
 import MainLayout from 'components/MainLayout'
+import Loader from 'components/Loader'
 
 import { getArticle } from 'api/article'
+import { LoadingContext } from 'contexts/loadingContext'
+import * as CONST from 'constants/loadingConstant'
 
 import * as AP from './articlePage.style'
 
 const ArticlePage = () => {
   const { params } = useRouteMatch()
+  const { loading, dispatch } = useContext(LoadingContext)
 
   const [article, setArticle] = useState({})
 
@@ -18,17 +22,20 @@ const ArticlePage = () => {
   }, [])
 
   const getData = async () => {
+    dispatch({ type: CONST.IS_LOADING, loading: true })
+
     const id = params.id.replaceAll('_', '/') || ''
     const data = await getArticle(id)
 
     setArticle(data)
+    dispatch({ type: CONST.STOP_LOADING, loading: false })
   }
-
-  console.log(`article`, article)
 
   return (
     <MainLayout title='Article1'>
-      {article && (
+      {loading ? (
+        <Loader />
+      ) : (
         <AP.Container>
           <AP.Content>
             <AP.ContentHeader>

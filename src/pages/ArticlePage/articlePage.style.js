@@ -18,14 +18,23 @@ export const ContentDetail = styled.div`
   p {
     margin-top: 20px !important;
 
-    &:first-child {
-      margin-top: 0;
+    time {
+      color: rgba(0, 0, 0, 0.5);
     }
   }
 
   a,
   a:visited {
     color: var(--primary);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  h2 {
+    margin-top: 20px !important;
   }
 `
 export const ContentThumbnail = styled.div`
@@ -42,11 +51,10 @@ export const ContentThumbnail = styled.div`
 
   figcaption {
     font-size: 12px;
-    color: rgba(0, 0, 0, 0.87);
+    color: rgba(0, 0, 0, 0.5);
 
     span {
       font-size: 12px;
-      color: rgba(0, 0, 0, 0.87);
     }
   }
 `

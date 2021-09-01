@@ -33,8 +33,8 @@ export const Logo = styled(Link)`
   }
 
   img {
-    height: calc(120px - (35px * 2));
-    padding: 35px 0;
+    height: calc(120px - (34px * 2));
+    padding: 32px 0;
   }
 `
 

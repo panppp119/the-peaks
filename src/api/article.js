@@ -16,7 +16,6 @@ export const getArticles = async (params) => {
   try {
     const data = await api.content.search('', query)
     const body = JSON.parse(data.body) || {}
-    console.log('articles', body)
 
     if (body.response.status === 'ok') {
       return body.response.results
@@ -35,7 +34,6 @@ export const getArticle = async (id) => {
       },
     })
     const response = data.data.response || {}
-    console.log(`data`, response)
 
     if (data.status === 200) {
       return response.content
