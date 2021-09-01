@@ -1,6 +1,14 @@
 import Guardian from 'guardian-js'
+import axios from 'axios'
 
 const api = new Guardian(process.env.REACT_APP_NEWS_KEY, false)
+const request = axios.create({
+  baseURL: 'https://content.guardianapis.com',
+  timeout: 3000,
+  params: {
+    'api-key': process.env.REACT_APP_NEWS_KEY,
+  },
+})
 
 export const getArticles = async (params) => {
   const query = params ? params : { pageSize: 10 }
@@ -19,15 +27,18 @@ export const getArticles = async (params) => {
 }
 
 export const getArticle = async (id) => {
-  console.log(`id`, id)
-
   try {
-    const data = await api.item.getById(id)
-    const body = JSON.parse(data.body) || {}
-    console.log('article response', body)
+    const data = await request.get(`/${id}`, {
+      params: {
+        'api-key': process.env.REACT_APP_NEWS_KEY,
+        'show-fields': 'all',
+      },
+    })
+    const response = data.data.response || {}
+    console.log(`data`, response)
 
-    if (body.response.status === 'ok') {
-      return body.response.results
+    if (data.status === 200) {
+      return response.content
     }
   } catch (err) {
     console.log(err)
