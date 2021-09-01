@@ -1,9 +1,40 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 
-const Container = styled.div``
+import { ReactComponent as BookmarkIcon } from 'assets/images/bookmark-icon.svg'
+
+const Button = styled('button')`
+  display: flex;
+  align-items: center;
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+
+  font-size: 13px;
+  line-height: 22px;
+
+  svg {
+    margin-right: 10px;
+    fill: var(--white);
+  }
+`
 
 const BookmarkButton = () => {
-  return <Container></Container>
+  const [type, setType] = useState('add')
+
+  const onButtonClick = (e) => {
+    e.preventDefault()
+    setType((oldType) => (oldType === 'add' ? 'remove' : 'add'))
+  }
+
+  return (
+    <Button onClick={onButtonClick}>
+      <BookmarkIcon type={type} /> {`${type.toUpperCase()}`} BOOKMARK
+    </Button>
+  )
 }
 
 export default BookmarkButton

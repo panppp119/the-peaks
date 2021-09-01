@@ -5,6 +5,7 @@ import moment from 'moment'
 
 import MainLayout from 'components/MainLayout'
 import Loader from 'components/Loader'
+import BookmarkButton from 'components/BookmarkButton'
 
 import { getArticle } from 'api/article'
 import { LoadingContext } from 'contexts/loadingContext'
@@ -41,6 +42,7 @@ const ArticlePage = () => {
         <AP.Container>
           <AP.Content>
             <AP.ContentHeader>
+              <BookmarkButton />
               <p>{moment(article.webPublicationDate).format(dateFormat)}</p>
               <h2>{article.webTitle}</h2>
               <h4>{article.fields?.trailText}</h4>
