@@ -45,7 +45,7 @@ export const ContentDetail = styled.div`
   }
 `
 export const ContentThumbnail = styled.div`
-  margin-top: 32px;
+  margin-top: 40px;
 
   figure {
     margin: 0;
