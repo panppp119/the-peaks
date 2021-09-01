@@ -15,7 +15,7 @@ const Container = styled.div`
   bottom: 0;
   color: var(--white);
   background-color: ${({ type }) =>
-    type === 'add' ? 'var(--error)' : 'var(--remove)'};
+    type === 'add' ? 'var(--error)' : 'var(--success)'};
 
   svg {
     fill: var(--white);

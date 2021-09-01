@@ -38,17 +38,15 @@ const ArticlePage = () => {
   }
 
   const ChangeBookmarkStatus = () => {
-    console.log(bookmarkStatus)
-    setBookmarkStatus((oldStatus) => (oldStatus === 'add' ? 'remove' : 'add'))
+    setBookmarkStatus(bookmarkStatus === 'add' ? 'remove' : 'add')
     setShowToast(true)
   }
 
   useEffect(() => {
     if (!!showToast) {
-      console.log(1)
       setTimeout(() => {
         setShowToast(false)
-      }, 5000)
+      }, 3000)
     }
   }, [showToast])
 

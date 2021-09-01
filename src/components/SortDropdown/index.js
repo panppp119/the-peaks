@@ -21,7 +21,6 @@ const SortDropdown = ({ style, options }) => {
   }
 
   const handleChangeSelected = (option) => {
-    console.log(option)
     setSelected(option)
     closeShowOptions()
   }
