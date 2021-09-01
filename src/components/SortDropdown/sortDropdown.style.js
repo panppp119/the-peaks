@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const Select = styled.div`
   position: relative;
   width: 255px;
-  font-family: 'Roboto';
   font-size: 16px;
   line-height: 24px;
 `

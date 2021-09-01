@@ -1,15 +1,12 @@
-import { useContext } from 'react'
+// import { useContext } from 'react'
 
 import MainLayout from 'components/MainLayout'
-import Card from 'components/Card'
+// import Card from 'components/Card'
 import ContentHeader from 'components/ContentHeader'
 import SortDropdown from 'components/SortDropdown'
 
-import { BookmarkContext } from 'contexts/bookmarkContext'
-
-const BookmarkPage = () => {
-  const title = 'All Bookmark'
-  const { bookmarks } = useContext(BookmarkContext)
+const SearchPage = () => {
+  const title = 'Search Results'
 
   return (
     <MainLayout title={title}>
@@ -22,12 +19,8 @@ const BookmarkPage = () => {
           />
         }
       />
-
-      {bookmarks.map((bookmark, index) => {
-        return <Card key={index} />
-      })}
     </MainLayout>
   )
 }
 
-export default BookmarkPage
+export default SearchPage

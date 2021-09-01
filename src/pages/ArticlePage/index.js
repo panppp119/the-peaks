@@ -6,6 +6,7 @@ import moment from 'moment'
 import MainLayout from 'components/MainLayout'
 import Loader from 'components/Loader'
 import BookmarkButton from 'components/BookmarkButton'
+import Toast from 'components/Toast'
 
 import { getArticle } from 'api/article'
 import { LoadingContext } from 'contexts/loadingContext'
@@ -19,6 +20,8 @@ const ArticlePage = () => {
   const dateFormat = 'ddd DD MMM YYYY HH:mm [GMT]ZZ'
 
   const [article, setArticle] = useState({})
+  const [bookmarkStatus, setBookmarkStatus] = useState('add')
+  const [showToast, setShowToast] = useState(false)
 
   useEffect(() => {
     getData()
@@ -34,6 +37,21 @@ const ArticlePage = () => {
     dispatch({ type: CONST.STOP_LOADING, loading: false })
   }
 
+  const ChangeBookmarkStatus = () => {
+    console.log(bookmarkStatus)
+    setBookmarkStatus((oldStatus) => (oldStatus === 'add' ? 'remove' : 'add'))
+    setShowToast(true)
+  }
+
+  useEffect(() => {
+    if (!!showToast) {
+      console.log(1)
+      setTimeout(() => {
+        setShowToast(false)
+      }, 5000)
+    }
+  }, [showToast])
+
   return (
     <MainLayout title={article.webTitle}>
       {loading ? (
@@ -42,7 +60,10 @@ const ArticlePage = () => {
         <AP.Container>
           <AP.Content>
             <AP.ContentHeader>
-              <BookmarkButton />
+              <BookmarkButton
+                type={bookmarkStatus}
+                onClick={ChangeBookmarkStatus}
+              />
               <p>{moment(article.webPublicationDate).format(dateFormat)}</p>
               <h2>{article.webTitle}</h2>
               <h4>{article.fields?.headline}</h4>
@@ -61,6 +82,8 @@ const ArticlePage = () => {
           </AP.Content>
         </AP.Container>
       )}
+
+      {showToast && <Toast type={bookmarkStatus} />}
     </MainLayout>
   )
 }

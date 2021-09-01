@@ -6,7 +6,7 @@ import MainLayout from 'components/MainLayout'
 import Loader from 'components/Loader'
 import BookmarkContextProvider from 'contexts/bookmarkContext'
 import LoadingContextProvider from 'contexts/loadingContext'
-import { HomePage, ArticlePage, BookmarkPage } from './pages'
+import { HomePage, ArticlePage, BookmarkPage, SearchPage } from './pages'
 
 import 'assets/styles/main.scss'
 
@@ -32,6 +32,7 @@ const App = () => {
             <Switch>
               <Route exact path='/' component={HomePage} />
               <Route exact path='/bookmark' component={BookmarkPage} />
+              <Route exact path='/search' component={SearchPage} />
               <Route exact path='/:id' component={ArticlePage} />
             </Switch>
           </BookmarkContextProvider>
