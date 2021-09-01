@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react'
 import { useRouteMatch } from 'react-router-dom'
 import HtmlParser from 'react-html-parser'
+import moment from 'moment'
 
 import MainLayout from 'components/MainLayout'
 import Loader from 'components/Loader'
@@ -14,6 +15,7 @@ import * as AP from './articlePage.style'
 const ArticlePage = () => {
   const { params } = useRouteMatch()
   const { loading, dispatch } = useContext(LoadingContext)
+  const dateFormat = 'ddd DD MMM YYYY HH:mm [GMT]ZZ'
 
   const [article, setArticle] = useState({})
 
@@ -39,6 +41,7 @@ const ArticlePage = () => {
         <AP.Container>
           <AP.Content>
             <AP.ContentHeader>
+              <p>{moment(article.webPublicationDate).format(dateFormat)}</p>
               <h2>{article.webTitle}</h2>
               <h4>{article.fields?.trailText}</h4>
             </AP.ContentHeader>

@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-export const Container = styled.div``
+export const Container = styled.div`
+  --gray: rgba(0, 0, 0, 0.5);
+`
 
 export const Content = styled.div`
   display: grid;
@@ -9,6 +11,11 @@ export const Content = styled.div`
 `
 
 export const ContentHeader = styled.div`
+  p {
+    color: var(--gray);
+    margin-bottom: 10px !important;
+  }
+
   h4 {
     margin-top: 10px !important;
   }
@@ -19,7 +26,7 @@ export const ContentDetail = styled.div`
     margin-top: 20px !important;
 
     time {
-      color: rgba(0, 0, 0, 0.5);
+      color: var(--gray);
     }
   }
 
@@ -51,7 +58,7 @@ export const ContentThumbnail = styled.div`
 
   figcaption {
     font-size: 12px;
-    color: rgba(0, 0, 0, 0.5);
+    color: var(--gray);
 
     span {
       font-size: 12px;
