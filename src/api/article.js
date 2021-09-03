@@ -2,7 +2,6 @@ import axios from 'axios'
 
 const request = axios.create({
   baseURL: 'https://content.guardianapis.com',
-  timeout: 3000,
   params: {
     'api-key': process.env.REACT_APP_NEWS_KEY,
   },

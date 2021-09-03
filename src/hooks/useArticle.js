@@ -9,7 +9,7 @@ const useArticles = () => {
   const getArticle = async (id, params) => {
     setLoading(true)
 
-    const data = await getData(id, { 'show-fields': 'body,main,headline' })
+    const data = await getData(id, params)
     setArticle(data)
 
     setLoading(false)

@@ -9,7 +9,7 @@ const Card = (props) => {
   return (
     <CC.Container
       custom={{ image: detail?.image, width, height, type: detail?.type }}
-      to={path}
+      to={`/article/${path}`}
     >
       {!detail?.image && (
         <CC.Media>

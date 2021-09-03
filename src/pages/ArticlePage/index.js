@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useRouteMatch } from 'react-router-dom'
 import HtmlParser from 'react-html-parser'
 import moment from 'moment'
@@ -8,6 +8,7 @@ import BookmarkButton from 'components/BookmarkButton'
 import Toast from 'components/Toast'
 
 import useArticle from 'hooks/useArticle'
+import { BookmarkContext } from 'contexts/bookmarkContext'
 
 import * as AP from './articlePage.style'
 
@@ -15,19 +16,38 @@ const ArticlePage = () => {
   const { params } = useRouteMatch()
   const { loading, article, getArticle } = useArticle()
 
+  const id = params.id.replaceAll('_', '/') || ''
   const dateFormat = 'ddd DD MMM YYYY HH:mm [GMT]ZZ'
 
   const [bookmarkStatus, setBookmarkStatus] = useState('add')
   const [showToast, setShowToast] = useState(false)
 
+  const { bookmark, setBookmark } = useContext(BookmarkContext)
+
   useEffect(() => {
-    const id = params.id.replaceAll('_', '/') || ''
-    getArticle(id, { 'show-fields': 'body,main,headline' })
+    getArticle(id, { 'show-fields': 'thumbnail,body,main,headline' })
+    hasBookmark() && setBookmarkStatus('remove')
   }, [])
 
   const ChangeBookmarkStatus = () => {
-    setBookmarkStatus(bookmarkStatus === 'add' ? 'remove' : 'add')
+    if (hasBookmark()) {
+      const index = bookmark.findIndex((article) => article.id === id)
+
+      let updateBookmark = [...bookmark]
+      updateBookmark.splice(index, 1)
+
+      setBookmark(updateBookmark)
+      setBookmarkStatus('add')
+    } else {
+      setBookmark((prevBookmark) => [...prevBookmark, article])
+      setBookmarkStatus('remove')
+    }
+
     setShowToast(true)
+  }
+
+  const hasBookmark = () => {
+    return bookmark.find((item) => item.id === id) !== undefined
   }
 
   useEffect(() => {
