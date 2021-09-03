@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import ContentHeader from 'components/ContentHeader'
 import Card from 'components/Card'
+import Loader from 'components/Loader'
 
 const Container = styled.div`
   margin-bottom: 50px;
@@ -14,23 +15,27 @@ const Articles = styled.div`
   grid-row-gap: var(--grid-gap);
 `
 
-const NewsGroup = ({ name, type, articles }) => {
+const NewsGroup = ({ name, type, articles, loading }) => {
   return (
     <Container>
       <ContentHeader name={name} />
 
-      <Articles>
-        {articles[type].map((article, index) => {
-          const detail = {
-            title: article.webTitle,
-            image: article.fields?.thumbnail,
-            path: article.id,
-            type,
-          }
+      {loading ? (
+        <Loader />
+      ) : (
+        <Articles>
+          {articles[type].map((article, index) => {
+            const detail = {
+              title: article.webTitle,
+              image: article.fields?.thumbnail,
+              path: article.id,
+              type,
+            }
 
-          return <Card key={index} detail={detail} width={350} height={347} />
-        })}
-      </Articles>
+            return <Card key={index} detail={detail} width={350} height={347} />
+          })}
+        </Articles>
+      )}
     </Container>
   )
 }

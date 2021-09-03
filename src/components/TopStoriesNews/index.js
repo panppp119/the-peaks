@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import ContentHeader from 'components/ContentHeader'
 import BookmarkButton from 'components/BookmarkButton'
 import SortDropdown from 'components/SortDropdown'
+import Loader from 'components/Loader'
 
 export const Container = styled.div`
   margin-bottom: 50px;
@@ -15,7 +16,7 @@ export const Articles = styled.div`
   grid-column-gap: var(--grid-gap);
 `
 
-const TopStoriesNews = ({ name, type, articles }) => {
+const TopStoriesNews = ({ name, type, articles, loading }) => {
   const history = useHistory()
 
   return (
@@ -37,7 +38,7 @@ const TopStoriesNews = ({ name, type, articles }) => {
         }
       />
 
-      <Articles></Articles>
+      {loading ? <Loader /> : <Articles></Articles>}
     </Container>
   )
 }

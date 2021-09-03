@@ -12,7 +12,7 @@ const BookmarkPage = () => {
   const { bookmarks } = useContext(BookmarkContext)
 
   return (
-    <MainLayout title={title}>
+    <>
       <ContentHeader
         name={title}
         right={
@@ -26,7 +26,7 @@ const BookmarkPage = () => {
       {bookmarks.map((bookmark, index) => {
         return <Card key={index} />
       })}
-    </MainLayout>
+    </>
   )
 }
 

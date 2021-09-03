@@ -1,20 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 
-import MainLayout from 'components/MainLayout'
 import NewsGroup from 'components/NewsGroup'
 
-import { getArticles } from 'api/article'
 import TopStoriesNews from 'components/TopStoriesNews'
 
-const initialArticles = {
-  news: [],
-  sport: [],
-  culture: [],
-  lifeandstyle: [],
-}
+import useArticles from 'hooks/useArticles'
 
 const HomePage = () => {
-  const [articles, setArticles] = useState(initialArticles)
+  const { loading, articles, getArticles } = useArticles()
 
   const sections = [
     { type: 'news', name: 'Top Stories', pageSize: 5 },
@@ -24,26 +17,20 @@ const HomePage = () => {
   ]
 
   useEffect(() => {
-    sections.map((section) => getList(section))
+    sections.map(({ type, pageSize }) => {
+      const params = {
+        section: type,
+        'page-size': pageSize,
+        'order-by': 'newest',
+        'show-fields': 'thumbnail,body',
+      }
+
+      getArticles(type, params)
+    })
   }, [])
 
-  const getList = async (section) => {
-    const { type, pageSize } = section
-    const params = {
-      section: type,
-      'page-size': pageSize,
-      'order-by': 'newest',
-      'show-fields': 'thumbnail,body',
-    }
-
-    const list = await getArticles(params)
-    setArticles((oldArticles) => ({ ...oldArticles, [type]: list }))
-
-    return list
-  }
-
   return (
-    <MainLayout>
+    <>
       {sections.map((section, index) => {
         const { name, type } = section
 
@@ -54,6 +41,7 @@ const HomePage = () => {
               name={name}
               type={type}
               articles={articles}
+              loading={loading}
             />
           )
         } else {
@@ -63,11 +51,12 @@ const HomePage = () => {
               name={name}
               type={type}
               articles={articles}
+              loading={loading}
             />
           )
         }
       })}
-    </MainLayout>
+    </>
   )
 }
 

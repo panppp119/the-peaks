@@ -9,7 +9,7 @@ const SearchPage = () => {
   const title = 'Search Results'
 
   return (
-    <MainLayout title={title}>
+    <>
       <ContentHeader
         name={title}
         right={
@@ -19,7 +19,7 @@ const SearchPage = () => {
           />
         }
       />
-    </MainLayout>
+    </>
   )
 }
 

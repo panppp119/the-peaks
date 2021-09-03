@@ -20,14 +20,8 @@ const App = () => {
 
   return (
     <Router>
-      <Suspense
-        fallback={
-          <MainLayout>
-            <Loader />
-          </MainLayout>
-        }
-      >
-        <LoadingContextProvider>
+      <MainLayout>
+        <Suspense fallback={<Loader />}>
           <BookmarkContextProvider>
             <Switch>
               <Route exact path='/' component={HomePage} />
@@ -36,8 +30,8 @@ const App = () => {
               <Route exact path='/:id' component={ArticlePage} />
             </Switch>
           </BookmarkContextProvider>
-        </LoadingContextProvider>
-      </Suspense>
+        </Suspense>
+      </MainLayout>
     </Router>
   )
 }
