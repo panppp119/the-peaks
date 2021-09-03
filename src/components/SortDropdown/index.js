@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+
+import { SortContext } from 'contexts/sortContext'
 
 import * as SDC from './sortDropdown.style'
 
@@ -9,6 +11,8 @@ const defaultOptions = [
 ]
 
 const SortDropdown = ({ style, options }) => {
+  const { setSort } = useContext(SortContext)
+
   const [selected, setSelected] = useState(defaultOptions[0])
   const [showOptions, setShowOptions] = useState(false)
 
@@ -22,6 +26,7 @@ const SortDropdown = ({ style, options }) => {
 
   const handleChangeSelected = (option) => {
     setSelected(option)
+    setSort(option.value)
     closeShowOptions()
   }
 

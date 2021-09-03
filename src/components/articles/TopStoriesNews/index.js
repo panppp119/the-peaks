@@ -33,6 +33,7 @@ const TopStoriesNews = ({ name, type, articles, loading }) => {
             <SortDropdown
               style={{ marginLeft: 20 }}
               options={['newest', 'oldest']}
+              // onSort={getArticles}
             />
           </>
         }

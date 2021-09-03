@@ -1,12 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 
 import NewsGroup from 'components/articles/NewsGroup'
 import TopStoriesNews from 'components/articles/TopStoriesNews'
 
 import useArticles from 'hooks/useArticles'
+import { SortContext } from 'contexts/sortContext'
 
 const HomePage = () => {
   const { loading, articles, getArticles } = useArticles()
+  const { sort, setSort } = useContext(SortContext)
 
   const sections = [
     { type: 'news', name: 'Top Stories', pageSize: 5 },
@@ -16,17 +18,23 @@ const HomePage = () => {
   ]
 
   useEffect(() => {
+    console.log(1)
+    setSort('newest')
+  }, [])
+
+  useEffect(() => {
+    console.log(2)
     sections.map(({ type, pageSize }) => {
       const params = {
         section: type,
         'page-size': pageSize,
-        'order-by': 'newest',
+        'order-by': sort,
         'show-fields': 'thumbnail,body',
       }
 
       getArticles(type, params)
     })
-  }, [])
+  }, [sort])
 
   return (
     <>
@@ -34,15 +42,7 @@ const HomePage = () => {
         const { name, type } = section
 
         if (type === 'news') {
-          return (
-            <TopStoriesNews
-              key={index}
-              name={name}
-              type={type}
-              articles={articles}
-              loading={loading}
-            />
-          )
+          return <TopStoriesNews key={index} name={name} type={type} />
         } else {
           return (
             <NewsGroup
