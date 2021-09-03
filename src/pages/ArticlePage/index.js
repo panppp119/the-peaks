@@ -3,7 +3,6 @@ import { useRouteMatch } from 'react-router-dom'
 import HtmlParser from 'react-html-parser'
 import moment from 'moment'
 
-import MainLayout from 'components/MainLayout'
 import Loader from 'components/Loader'
 import BookmarkButton from 'components/BookmarkButton'
 import Toast from 'components/Toast'
