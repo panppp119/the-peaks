@@ -39,7 +39,7 @@ const Card = (props) => {
   const path = detail.path && detail.path.replaceAll('/', '_')
 
   return (
-    <Container custom={{ type: detail?.type }} to={path}>
+    <Container custom={{ type: detail?.type }} to={`/article/${path}`}>
       <Detail>
         <Title>{detail.title}</Title>
         {detail.subtitle && <p>{detail.subtitle}</p>}

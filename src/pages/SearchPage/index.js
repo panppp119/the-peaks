@@ -86,25 +86,14 @@ const SearchPage = () => {
                 type: article.sectionId,
               }
 
-              if (searchResult.length === index + 1) {
-                return (
-                  <Card
-                    key={index}
-                    detail={detail}
-                    width='350px'
-                    height='347px'
-                  />
-                )
-              } else {
-                return (
-                  <Card
-                    key={index}
-                    detail={detail}
-                    width='350px'
-                    height='347px'
-                  />
-                )
-              }
+              return (
+                <Card
+                  key={index}
+                  detail={detail}
+                  width='350px'
+                  height='347px'
+                />
+              )
             })
           : !loading && <p>No Data</p>}
       </Articles>
