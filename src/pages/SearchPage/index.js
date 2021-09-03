@@ -1,4 +1,4 @@
-import { useState, useContext, useRef, useCallback } from 'react'
+import { useState, useEffect, useContext, useRef } from 'react'
 import { Prompt, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -13,37 +13,48 @@ import { SearchContext } from 'contexts/searchContext'
 
 const Articles = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-column-gap: var(--grid-gap);
   grid-row-gap: var(--grid-gap);
+  margin-bottom: var(--grid-gap);
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `
 
 const SearchPage = () => {
   const title = 'Search Results'
   const history = useHistory()
 
-  const [pageNumber, setPageNumber] = useState(1)
+  const [pageNumber, setPageNumber] = useState(0)
 
   const { searchResult, searchQuery, setSearchQuery } =
     useContext(SearchContext)
-  const { loading, hasMore } = useSearch(searchQuery, pageNumber)
+  const { loading } = useSearch(searchQuery, pageNumber)
 
-  const observer = useRef()
-  const lastArticleRef = useCallback(
-    (node) => {
-      if (loading) return
+  const last = useRef(null)
 
-      if (observer.current) observer.current.disconnect()
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPageNumber((prevPageNumber) => prevPageNumber + 1)
-        }
-      })
+  useEffect(() => {
+    var options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0,
+    }
 
-      if (node) observer.current.observe(node)
-    },
-    [loading, hasMore],
-  )
+    const observer = new IntersectionObserver(handleObserver, options)
+
+    if (last.current) {
+      observer.observe(last.current)
+    }
+  }, [])
+
+  const handleObserver = (entities) => {
+    const target = entities[0]
+    if (target.isIntersecting) {
+      setPageNumber((page) => page + 1)
+    }
+  }
 
   return (
     <>
@@ -79,29 +90,19 @@ const SearchPage = () => {
                 type: article.sectionId,
               }
 
-              if (searchResult.length === index + 1) {
-                return (
-                  <Card
-                    key={index}
-                    ref={lastArticleRef}
-                    detail={detail}
-                    width='350px'
-                    height='347px'
-                  />
-                )
-              } else {
-                return (
-                  <Card
-                    key={index}
-                    detail={detail}
-                    width='350px'
-                    height='347px'
-                  />
-                )
-              }
+              return (
+                <Card
+                  key={index}
+                  detail={detail}
+                  width='350px'
+                  height='347px'
+                />
+              )
             })
           : !loading && <p>No Data</p>}
       </Articles>
+
+      <div ref={last} />
       {loading && <Loader />}
     </>
   )

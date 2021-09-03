@@ -11,9 +11,13 @@ import { SortContext } from 'contexts/sortContext'
 
 const Articles = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-column-gap: var(--grid-gap);
   grid-row-gap: var(--grid-gap);
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `
 
 const BookmarkPage = () => {

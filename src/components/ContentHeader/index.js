@@ -10,7 +10,6 @@ export const Container = styled.div`
 export const HeaderLeft = styled.div``
 
 export const HeaderRight = styled.div`
-  display: flex;
   justify-content: space-between;
 
   select {

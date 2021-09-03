@@ -11,10 +11,14 @@ const Container = styled.div`
 
 const Articles = styled.div`
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(1, 1fr);
   grid-column-gap: var(--grid-gap);
   grid-row-gap: var(--grid-gap);
   min-height: 130px;
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `
 
 const NewsGroup = ({ name, type, articles, loading }) => {

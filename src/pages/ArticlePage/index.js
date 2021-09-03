@@ -78,12 +78,16 @@ const ArticlePage = () => {
           </AP.Content>
 
           <AP.Content>
+            <AP.ContentThumbnail className='mobile'>
+              {HtmlParser(article.fields?.main)}
+            </AP.ContentThumbnail>
+
             <AP.ContentDetail>
               <AP.Line />
               {HtmlParser(article.fields?.body)}
             </AP.ContentDetail>
 
-            <AP.ContentThumbnail>
+            <AP.ContentThumbnail className='desktop'>
               {HtmlParser(article.fields?.main)}
             </AP.ContentThumbnail>
           </AP.Content>

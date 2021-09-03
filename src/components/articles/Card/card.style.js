@@ -7,8 +7,8 @@ export const Container = styled(Link)`
   background-size: cover;
   background-repeat: none;
   packground-position: center;
-  width: ${({ custom }) => (custom.width ? `${custom.width}` : '200px')};
-  height: ${({ custom }) => (custom.height ? `${custom.height}` : '200px')};
+  width: 100%;
+  height: 300px;
   position: relative;
   border-bottom: 3px solid
     ${({ custom }) => {
@@ -23,6 +23,11 @@ export const Container = styled(Link)`
           return '#999999'
       }
     }};
+
+  @media screen and (min-width: 1024px) {
+    width: ${({ custom }) => (custom.width ? `${custom.width}` : '200px')};
+    height: ${({ custom }) => (custom.height ? `${custom.height}` : '200px')};
+  }
 `
 
 export const Media = styled.div`

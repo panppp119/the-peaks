@@ -40,13 +40,22 @@ export const Logo = styled(Link)`
 
 export const Content = styled.div`
   width: 100%;
-  min-height: calc(100% - (120px + 220px + 100px));
+  min-height: calc(100% - (120px + 200px));
   background-color: var(--white);
-  padding: 50px 0;
+  padding: 30px 0;
+
+  @media screen and (min-width: 1024px) {
+    min-height: calc(100% - (120px + 220px + 100px));
+    padding: 50px 0;
+  }
 `
 
 export const Footer = styled('footer')`
   width: 100%;
-  height: 220px;
+  height: 120px;
   background-color: var(--primary);
+
+  @media screen and (min-width: 1024px) {
+    height: 220px;
+  }
 `
