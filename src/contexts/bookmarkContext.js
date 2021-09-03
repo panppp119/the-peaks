@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from 'react'
+import { createContext, useReducer, useEffect, useMemo } from 'react'
 
 import { bookmarkReducer } from 'reducers/bookmarkReducer'
 
@@ -11,10 +11,12 @@ const BookmarkContextProvider = (props) => {
     return localData !== null ? JSON.parse(localData) : []
   })
 
-  useEffect(() => {}, [bookmarks])
+  const value = useMemo(() => ({ bookmarks, dispatch }), [bookmarks, dispatch])
+
+  // useEffect(() => {}, [bookmarks])
 
   return (
-    <BookmarkContext.Provider value={{ bookmarks, dispatch }}>
+    <BookmarkContext.Provider value={value}>
       {props.children}
     </BookmarkContext.Provider>
   )

@@ -18,12 +18,10 @@ const HomePage = () => {
   ]
 
   useEffect(() => {
-    console.log(1)
     setSort('newest')
   }, [])
 
   useEffect(() => {
-    console.log(2)
     sections.map(({ type, pageSize }) => {
       const params = {
         section: type,

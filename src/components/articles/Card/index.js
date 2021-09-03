@@ -22,7 +22,7 @@ const Container = styled(Link)`
         case 'lifeandstyle':
           return 'var(--blue)'
         default:
-          return 'var(--error)'
+          return '#999999'
       }
     }};
 `
