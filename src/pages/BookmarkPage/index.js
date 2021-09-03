@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 
-import MainLayout from 'components/MainLayout'
-import Card from 'components/Card'
+import Card from 'components/articles/Card'
 import ContentHeader from 'components/ContentHeader'
 import SortDropdown from 'components/SortDropdown'
 
@@ -12,7 +11,7 @@ const BookmarkPage = () => {
   const { bookmarks } = useContext(BookmarkContext)
 
   return (
-    <MainLayout title={title}>
+    <>
       <ContentHeader
         name={title}
         right={
@@ -26,7 +25,7 @@ const BookmarkPage = () => {
       {bookmarks.map((bookmark, index) => {
         return <Card key={index} />
       })}
-    </MainLayout>
+    </>
   )
 }
 

@@ -1,20 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 
-import MainLayout from 'components/MainLayout'
-import NewsGroup from 'components/NewsGroup'
+import NewsGroup from 'components/articles/NewsGroup'
+import TopStoriesNews from 'components/articles/TopStoriesNews'
 
-import { getArticles } from 'api/article'
-import TopStoriesNews from 'components/TopStoriesNews'
-
-const initialArticles = {
-  news: [],
-  sport: [],
-  culture: [],
-  lifeandstyle: [],
-}
+import useArticles from 'hooks/useArticles'
+import { SortContext } from 'contexts/sortContext'
 
 const HomePage = () => {
-  const [articles, setArticles] = useState(initialArticles)
+  const { loading, articles, getArticles } = useArticles()
+  const { sort, setSort } = useContext(SortContext)
 
   const sections = [
     { type: 'news', name: 'Top Stories', pageSize: 5 },
@@ -24,26 +18,26 @@ const HomePage = () => {
   ]
 
   useEffect(() => {
-    sections.map((section) => getList(section))
+    console.log(1)
+    setSort('newest')
   }, [])
 
-  const getList = async (section) => {
-    const { type, pageSize } = section
-    const params = {
-      section: type,
-      'page-size': pageSize,
-      'order-by': 'newest',
-      'show-fields': 'thumbnail,body',
-    }
+  useEffect(() => {
+    console.log(2)
+    sections.map(({ type, pageSize }) => {
+      const params = {
+        section: type,
+        'page-size': pageSize,
+        'order-by': sort,
+        'show-fields': 'thumbnail,body',
+      }
 
-    const list = await getArticles(params)
-    setArticles((oldArticles) => ({ ...oldArticles, [type]: list }))
-
-    return list
-  }
+      getArticles(type, params)
+    })
+  }, [sort])
 
   return (
-    <MainLayout>
+    <>
       {sections.map((section, index) => {
         const { name, type } = section
 
@@ -54,6 +48,7 @@ const HomePage = () => {
               name={name}
               type={type}
               articles={articles}
+              loading={loading}
             />
           )
         } else {
@@ -63,11 +58,12 @@ const HomePage = () => {
               name={name}
               type={type}
               articles={articles}
+              loading={loading}
             />
           )
         }
       })}
-    </MainLayout>
+    </>
   )
 }
 

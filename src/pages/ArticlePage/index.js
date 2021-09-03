@@ -1,41 +1,29 @@
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouteMatch } from 'react-router-dom'
 import HtmlParser from 'react-html-parser'
 import moment from 'moment'
 
-import MainLayout from 'components/MainLayout'
 import Loader from 'components/Loader'
 import BookmarkButton from 'components/BookmarkButton'
 import Toast from 'components/Toast'
 
-import { getArticle } from 'api/article'
-import { LoadingContext } from 'contexts/loadingContext'
-import * as CONST from 'constants/loadingConstant'
+import useArticle from 'hooks/useArticle'
 
 import * as AP from './articlePage.style'
 
 const ArticlePage = () => {
   const { params } = useRouteMatch()
-  const { loading, dispatch } = useContext(LoadingContext)
+  const { loading, article, getArticle } = useArticle()
+
   const dateFormat = 'ddd DD MMM YYYY HH:mm [GMT]ZZ'
 
-  const [article, setArticle] = useState({})
   const [bookmarkStatus, setBookmarkStatus] = useState('add')
   const [showToast, setShowToast] = useState(false)
 
   useEffect(() => {
-    getData()
-  }, [])
-
-  const getData = async () => {
-    dispatch({ type: CONST.IS_LOADING, loading: true })
-
     const id = params.id.replaceAll('_', '/') || ''
-    const data = await getArticle(id, { 'show-fields': 'body,main,headline' })
-
-    setArticle(data)
-    dispatch({ type: CONST.STOP_LOADING, loading: false })
-  }
+    getArticle(id, { 'show-fields': 'body,main,headline' })
+  }, [])
 
   const ChangeBookmarkStatus = () => {
     setBookmarkStatus(bookmarkStatus === 'add' ? 'remove' : 'add')
@@ -51,7 +39,7 @@ const ArticlePage = () => {
   }, [showToast])
 
   return (
-    <MainLayout title={article.webTitle}>
+    <>
       {loading ? (
         <Loader />
       ) : (
@@ -62,6 +50,7 @@ const ArticlePage = () => {
                 type={bookmarkStatus}
                 onClick={ChangeBookmarkStatus}
               />
+
               <p>{moment(article.webPublicationDate).format(dateFormat)}</p>
               <h2>{article.webTitle}</h2>
               <h4>{article.fields?.headline}</h4>
@@ -82,7 +71,7 @@ const ArticlePage = () => {
       )}
 
       {showToast && <Toast type={bookmarkStatus} />}
-    </MainLayout>
+    </>
   )
 }
 
