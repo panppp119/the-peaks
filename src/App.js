@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import MainLayout from 'components/MainLayout'
 import Loader from 'components/Loader'
 import BookmarkContextProvider from 'contexts/bookmarkContext'
-import LoadingContextProvider from 'contexts/loadingContext'
 import { HomePage, ArticlePage, BookmarkPage, SearchPage } from './pages'
 
 import 'assets/styles/main.scss'
