@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 
 import MainLayout from 'components/MainLayout'
-import Card from 'components/Card'
+import Card from 'components/articles/Card'
 import ContentHeader from 'components/ContentHeader'
 import SortDropdown from 'components/SortDropdown'
 

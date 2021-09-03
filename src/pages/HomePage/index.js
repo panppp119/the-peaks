@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
 
-import NewsGroup from 'components/NewsGroup'
-
-import TopStoriesNews from 'components/TopStoriesNews'
+import NewsGroup from 'components/articles/NewsGroup'
+import TopStoriesNews from 'components/articles/TopStoriesNews'
 
 import useArticles from 'hooks/useArticles'
 

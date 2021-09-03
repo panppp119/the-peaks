@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import ContentHeader from 'components/ContentHeader'
-import Card from 'components/Card'
+import Card from 'components/articles/Card'
 import Loader from 'components/Loader'
 
 const Container = styled.div`
