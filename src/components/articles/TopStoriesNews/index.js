@@ -14,7 +14,7 @@ export const Container = styled.div`
 
 export const Articles = styled.div`
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: auto;
   grid-column-gap: var(--grid-gap);
   grid-row-gap: var(--grid-gap);
   min-height: 150px;
@@ -26,7 +26,7 @@ export const Articles = styled.div`
 
 export const Cards = styled.div`
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: auto;
   grid-column-gap: var(--grid-gap);
   grid-row-gap: var(--grid-gap);
 
@@ -53,10 +53,7 @@ const TopStoriesNews = ({ name, type, articles, loading }) => {
               onClick={() => history.push('/bookmark')}
             />
 
-            <SortDropdown
-              style={{ marginLeft: 20 }}
-              options={['newest', 'oldest']}
-            />
+            <SortDropdown options={['newest', 'oldest']} />
           </>
         }
       />

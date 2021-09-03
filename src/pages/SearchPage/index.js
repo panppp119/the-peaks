@@ -13,7 +13,7 @@ import { SearchContext } from 'contexts/searchContext'
 
 const Articles = styled.div`
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: auto;
   grid-column-gap: var(--grid-gap);
   grid-row-gap: var(--grid-gap);
   margin-bottom: var(--grid-gap);
@@ -72,10 +72,7 @@ const SearchPage = () => {
               onClick={() => history.push('/bookmark')}
             />
 
-            <SortDropdown
-              style={{ marginLeft: 20 }}
-              options={['newest', 'oldest']}
-            />
+            <SortDropdown options={['newest', 'oldest']} />
           </>
         }
       />

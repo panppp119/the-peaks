@@ -2,9 +2,13 @@ import styled from 'styled-components'
 
 export const Select = styled.div`
   position: relative;
-  width: 255px;
+  width: 155px;
   font-size: 16px;
   line-height: 24px;
+
+  @media screen and (min-width: 1024px) {
+    width: 255px;
+  }
 `
 
 export const DisplaySelected = styled.div`
@@ -33,7 +37,7 @@ export const Options = styled.div`
   position: absolute;
   top: 0;
   background-color: var(--white);
-  width: 255px;
+  width: 155px;
   border: 1px solid var(--gray);
   z-index: 2;
 
@@ -48,6 +52,10 @@ export const Options = styled.div`
     border-right: 5px solid transparent;
     border-bottom: 5px solid var(--black);
     clear: both;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 255px;
   }
 `
 

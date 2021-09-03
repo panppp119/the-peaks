@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const Articles = styled.div`
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: auto;
   grid-column-gap: var(--grid-gap);
   grid-row-gap: var(--grid-gap);
   min-height: 130px;

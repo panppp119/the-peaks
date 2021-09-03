@@ -14,9 +14,13 @@ export const Container = styled.div`
 `
 
 export const Header = styled('header')`
-  height: 120px;
+  height: 100px;
   background-color: var(--primary);
   color: var(--white);
+
+  @media screen and (min-width: 1024px) {
+    height: 120px;
+  }
 `
 
 export const Logo = styled(Link)`
@@ -33,8 +37,15 @@ export const Logo = styled(Link)`
   }
 
   img {
-    height: calc(120px - (34px * 2));
-    padding: 32px 0;
+    height: 40px;
+    padding: 28px 0;
+  }
+
+  @media screen and (min-width: 1024px) {
+    img {
+      height: calc(120px - (34px * 2));
+      padding: 32px 0;
+    }
   }
 `
 
