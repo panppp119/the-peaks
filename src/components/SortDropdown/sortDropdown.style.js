@@ -35,6 +35,7 @@ export const Options = styled.div`
   background-color: var(--white);
   width: 255px;
   border: 1px solid var(--gray);
+  z-index: 2;
 
   &::after {
     content: '';

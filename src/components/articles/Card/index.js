@@ -9,8 +9,8 @@ const Container = styled(Link)`
   background-size: cover;
   background-repeat: none;
   packground-position: center;
-  width: ${({ custom }) => (custom.width ? `${custom.width}px` : '200px')};
-  height: ${({ custom }) => (custom.height ? `${custom.height}px` : '200px')};
+  width: ${({ custom }) => (custom.width ? `${custom.width}` : '200px')};
+  height: ${({ custom }) => (custom.height ? `${custom.height}` : '200px')};
   position: relative;
   border-bottom: 3px solid
     ${({ custom }) => {
@@ -29,14 +29,16 @@ const Container = styled(Link)`
 
 const Media = styled.div`
   position: absolute;
-  top: 60px;
+  top: calc(50% - 150px);
   left: 0;
   right: 0;
   margin: auto;
   text-align: center;
+  padding: 50px;
 
   img {
-    width: 240px;
+    max-width: 240px;
+    width: 100%;
   }
 `
 
@@ -48,7 +50,7 @@ const Detail = styled.div`
   padding: 10px;
   background-color: rgba(9, 53, 123, 0.9);
   color: var(--white);
-  min-height: 134px;
+  min-height: 130px;
   word-break: break-word;
 `
 
@@ -59,7 +61,7 @@ const Title = styled('h3')`
 
 const Card = (props) => {
   const { detail, width, height } = props
-  const path = detail?.path.replaceAll('/', '_')
+  const path = detail.path && detail.path.replaceAll('/', '_')
 
   return (
     <Container

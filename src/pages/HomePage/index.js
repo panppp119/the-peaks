@@ -42,7 +42,15 @@ const HomePage = () => {
         const { name, type } = section
 
         if (type === 'news') {
-          return <TopStoriesNews key={index} name={name} type={type} />
+          return (
+            <TopStoriesNews
+              key={index}
+              name={name}
+              type={type}
+              articles={articles}
+              loading={loading}
+            />
+          )
         } else {
           return (
             <NewsGroup

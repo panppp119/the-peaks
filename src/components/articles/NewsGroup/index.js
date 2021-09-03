@@ -6,6 +6,7 @@ import Loader from 'components/Loader'
 
 const Container = styled.div`
   margin-bottom: 50px;
+  min-height: 150px;
 `
 
 const Articles = styled.div`
@@ -13,6 +14,7 @@ const Articles = styled.div`
   grid-template-columns: auto auto auto;
   grid-column-gap: var(--grid-gap);
   grid-row-gap: var(--grid-gap);
+  min-height: 130px;
 `
 
 const NewsGroup = ({ name, type, articles, loading }) => {
@@ -32,7 +34,9 @@ const NewsGroup = ({ name, type, articles, loading }) => {
               type,
             }
 
-            return <Card key={index} detail={detail} width={350} height={347} />
+            return (
+              <Card key={index} detail={detail} width='350px' height='347px' />
+            )
           })}
         </Articles>
       )}
