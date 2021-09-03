@@ -14,6 +14,7 @@ const useArticles = () => {
   const [articles, setArticles] = useState(initialArticles)
 
   const getArticles = async (type, params) => {
+    setArticles(initialArticles)
     setLoading(true)
 
     const list = await getList(params)

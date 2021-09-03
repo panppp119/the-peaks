@@ -32,7 +32,6 @@ const TopStoriesNews = ({ name, type, articles, loading }) => {
   const leftArticle = articles[type][0] || {}
   const rightArticles =
     articles[type].filter((article, index) => index > 0) || []
-  console.log(rightArticles)
 
   return (
     <Container>

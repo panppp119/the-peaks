@@ -1,18 +1,18 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, useMemo } from 'react'
 
 export const SortContext = createContext('newest')
 
 const SortContextProvider = (props) => {
   const [sort, setSort] = useState('newest')
 
+  const value = useMemo(() => ({ sort, setSort }), [sort, setSort])
+
   useEffect(() => {
     setSort(sort)
   }, [sort])
 
   return (
-    <SortContext.Provider value={{ sort, setSort }}>
-      {props.children}
-    </SortContext.Provider>
+    <SortContext.Provider value={value}>{props.children}</SortContext.Provider>
   )
 }
 
