@@ -11,9 +11,13 @@ import { SortContext } from 'contexts/sortContext'
 
 const Articles = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: auto;
   grid-column-gap: var(--grid-gap);
   grid-row-gap: var(--grid-gap);
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `
 
 const BookmarkPage = () => {
@@ -50,12 +54,7 @@ const BookmarkPage = () => {
 
       <ContentHeader
         name={title}
-        right={
-          <SortDropdown
-            style={{ marginLeft: 20 }}
-            options={['newest', 'oldest']}
-          />
-        }
+        right={<SortDropdown options={['newest', 'oldest']} />}
       />
 
       <Articles>

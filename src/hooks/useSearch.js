@@ -6,7 +6,6 @@ import { SortContext } from 'contexts/sortContext'
 
 const useSearch = (query, pageNumber) => {
   const [loading, setLoading] = useState(false)
-  const [hasMore, setHasMore] = useState(false)
 
   const { setSearchResult, setSearchQuery } = useContext(SearchContext)
   const { sort } = useContext(SortContext)
@@ -40,11 +39,10 @@ const useSearch = (query, pageNumber) => {
     setSearchResult((oldArticle) => {
       return data.length > 0 ? [...oldArticle, ...data] : oldArticle
     })
-    setHasMore(data.length > 0)
     setLoading(false)
   }
 
-  return { loading, hasMore }
+  return { loading }
 }
 
 export default useSearch

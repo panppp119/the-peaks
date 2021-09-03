@@ -19,7 +19,7 @@ export const Container = styled.div`
   }
 
   &.expand {
-    width: 300px;
+    width: 250px;
     background-color: rgba(33, 83, 163, 1);
   }
 
@@ -36,6 +36,12 @@ export const Container = styled.div`
 
     &::placeholder {
       color: rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    &.expand {
+      width: 300px;
     }
   }
 `

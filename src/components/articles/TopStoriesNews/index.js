@@ -14,16 +14,25 @@ export const Container = styled.div`
 
 export const Articles = styled.div`
   display: grid;
-  grid-template-columns: 50% auto;
+  grid-template-columns: auto;
   grid-column-gap: var(--grid-gap);
+  grid-row-gap: var(--grid-gap);
   min-height: 150px;
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 
 export const Cards = styled.div`
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto;
   grid-column-gap: var(--grid-gap);
   grid-row-gap: var(--grid-gap);
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 
 const TopStoriesNews = ({ name, type, articles, loading }) => {
@@ -44,10 +53,7 @@ const TopStoriesNews = ({ name, type, articles, loading }) => {
               onClick={() => history.push('/bookmark')}
             />
 
-            <SortDropdown
-              style={{ marginLeft: 20 }}
-              options={['newest', 'oldest']}
-            />
+            <SortDropdown options={['newest', 'oldest']} />
           </>
         }
       />
@@ -76,7 +82,7 @@ const TopStoriesNews = ({ name, type, articles, loading }) => {
                 type,
               }
 
-              if (index < 2)
+              if (index < 2) {
                 return (
                   <Card
                     key={index}
@@ -85,8 +91,9 @@ const TopStoriesNews = ({ name, type, articles, loading }) => {
                     height='252px'
                   />
                 )
-
-              return <TitleCard key={index} detail={detail} />
+              } else {
+                return <TitleCard key={index} detail={detail} />
+              }
             })}
           </Cards>
         </Articles>

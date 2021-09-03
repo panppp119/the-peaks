@@ -4,8 +4,12 @@ export const Container = styled.div``
 
 export const Content = styled.div`
   display: grid;
-  grid-template-columns: 60% auto;
+  grid-template-columns: auto;
   grid-column-gap: var(--grid-gap);
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: 60% auto;
+  }
 `
 
 export const ContentHeader = styled.div`
@@ -42,9 +46,39 @@ export const ContentDetail = styled.div`
   h2 {
     margin-top: 20px !important;
   }
+
+  figure {
+    padding: 20px;
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
+
+    iframe {
+      width: 100%;
+    }
+
+    figcaption {
+      color: var(--gray);
+      font-size: 12px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    figure {
+      max-width: 500px;
+    }
+  }
 `
 export const ContentThumbnail = styled.div`
-  margin-top: 40px;
+  margin-top: 20px;
+
+  &.mobile {
+    display: block;
+  }
+
+  &.desktop {
+    display: none;
+  }
 
   figure {
     margin: 0;
@@ -61,6 +95,18 @@ export const ContentThumbnail = styled.div`
 
     span {
       font-size: 12px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin-top: 40px;
+
+    &.mobile {
+      display: none;
+    }
+
+    &.desktop {
+      display: block;
     }
   }
 `
