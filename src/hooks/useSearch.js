@@ -28,13 +28,14 @@ const useSearch = (query, pageNumber) => {
   const getList = async () => {
     setLoading(true)
 
-    const data = await getArticles({
-      q: query,
-      'current-page': pageNumber,
-      'order-by': sort,
-      'page-size': 15,
-      'show-fields': 'thumbnail,body',
-    })
+    const data =
+      (await getArticles({
+        q: query,
+        'current-page': pageNumber,
+        'order-by': sort,
+        'page-size': 15,
+        'show-fields': 'thumbnail,body',
+      })) || []
 
     setSearchResult((oldArticle) => {
       return data.length > 0 ? [...oldArticle, ...data] : oldArticle

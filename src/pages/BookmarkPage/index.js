@@ -29,7 +29,7 @@ const BookmarkPage = () => {
   const { bookmark } = useContext(BookmarkContext)
 
   useEffect(() => {
-    let updateBookmark = [...bookmark]
+    let updateBookmark = [...bookmark] || []
 
     if (sort === 'newest') {
       updateBookmark.sort(
