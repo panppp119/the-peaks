@@ -1,10 +1,11 @@
 import { useState, useContext, useRef, useCallback } from 'react'
-import { Prompt } from 'react-router-dom'
+import { Prompt, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 import ContentHeader from 'components/ContentHeader'
 import SortDropdown from 'components/SortDropdown'
 import Card from 'components/articles/Card'
+import BookmarkButton from 'components/BookmarkButton'
 
 import useSearch from 'hooks/useSearch'
 import { SearchContext } from 'contexts/searchContext'
@@ -19,6 +20,7 @@ const Articles = styled.div`
 
 const SearchPage = () => {
   const title = 'Search Results'
+  const history = useHistory()
 
   const [pageNumber, setPageNumber] = useState(1)
 
@@ -53,10 +55,17 @@ const SearchPage = () => {
       <ContentHeader
         name={title}
         right={
-          <SortDropdown
-            style={{ marginLeft: 20 }}
-            options={['newest', 'oldest']}
-          />
+          <>
+            <BookmarkButton
+              type='view'
+              onClick={() => history.push('/bookmark')}
+            />
+
+            <SortDropdown
+              style={{ marginLeft: 20 }}
+              options={['newest', 'oldest']}
+            />
+          </>
         }
       />
 
