@@ -1,21 +1,58 @@
-@import './colors';
-@import './typography';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+* {
+  --primary: #09357B;
+  --secondary: #0D47A1;
+
+  --black: #000000;
+  --white: #FFFFFF;
+  --blue: #2196F3;
+  --gray: rgba(0, 0, 0, 0.5);
+
+  --success: #388E3C;
+  --error: #D32F2F;
+  --warning: #FFCA28;
+
+  --search-icon: #FAFAFA;
+
+  --h1: 48px;
+  --h2: 34px;
+  --h3: 24px;
+  --h4: 20px;
+  --h5: 14px;
+
+  --default-font-size: 14px;
+
+  --grid-gap: 30px;
+}
 
 html, body, #root {
   width: 100%;
   height: 100%;
-  font-size: 14px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: var(--default-font-size);
+  font-family: 'Roboto', Georgia, 'Times New Roman', Times, serif;
+  line-height: 20px;
   color: var(--black);
   margin: 0;
   padding: 0;
 
+  h1, h2, h3, h4, h5, p, a {
+    margin: 0;
+    padding: 0;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: Georgia, sans-serif;
+  }
+
   h1 {
     font-size: var(--h1);
+    line-height: 32px;
   }
 
   h2 {
     font-size: var(--h2);
+    line-height: 39px;
   }
 
   h3 {
@@ -24,10 +61,15 @@ html, body, #root {
 
   h4 {
     font-size: var(--h4);
+    line-height: 26px;
   }
 
   h5 {
     font-size: var(--h5);
+  }
+
+  p {
+    line-height: 20px;
   }
 
   @media screen and (min-width: 1024px) {

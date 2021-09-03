@@ -25,5 +25,5 @@ export const Loader = styled.div`
   width: var(--loader-size);
   height: var(--loader-size);
   animation: spin 2s linear infinite;
-  margin: 230px auto 0;
+  margin: 0 auto;
 `
