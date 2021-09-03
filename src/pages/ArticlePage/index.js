@@ -14,6 +14,7 @@ import * as AP from './articlePage.style'
 const ArticlePage = () => {
   const { params } = useRouteMatch()
   const { loading, article, getArticle } = useArticle()
+
   const dateFormat = 'ddd DD MMM YYYY HH:mm [GMT]ZZ'
 
   const [bookmarkStatus, setBookmarkStatus] = useState('add')
