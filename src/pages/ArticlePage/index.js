@@ -33,7 +33,7 @@ const ArticlePage = () => {
     if (hasBookmark()) {
       const index = bookmark.findIndex((article) => article.id === id)
 
-      let updateBookmark = [...bookmark]
+      let updateBookmark = [...bookmark] || []
       updateBookmark.splice(index, 1)
 
       setBookmark(updateBookmark)
@@ -71,24 +71,24 @@ const ArticlePage = () => {
                 onClick={ChangeBookmarkStatus}
               />
 
-              <p>{moment(article.webPublicationDate).format(dateFormat)}</p>
-              <h2>{article.webTitle}</h2>
-              <h4>{article.fields?.headline}</h4>
+              <p>{moment(article?.webPublicationDate).format(dateFormat)}</p>
+              <h2>{article?.webTitle}</h2>
+              <h4>{article?.fields?.headline}</h4>
             </AP.ContentHeader>
           </AP.Content>
 
           <AP.Content>
             <AP.ContentThumbnail className='mobile'>
-              {HtmlParser(article.fields?.main)}
+              {HtmlParser(article?.fields?.main)}
             </AP.ContentThumbnail>
 
             <AP.ContentDetail>
               <AP.Line />
-              {HtmlParser(article.fields?.body)}
+              {HtmlParser(article?.fields?.body)}
             </AP.ContentDetail>
 
             <AP.ContentThumbnail className='desktop'>
-              {HtmlParser(article.fields?.main)}
+              {HtmlParser(article?.fields?.main)}
             </AP.ContentThumbnail>
           </AP.Content>
         </AP.Container>

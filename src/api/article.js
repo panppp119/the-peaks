@@ -16,6 +16,7 @@ export const getArticles = async (params) => {
       return response.results || []
     }
   } catch (err) {
+    console.log(`111`, 111)
     console.log(err)
   }
 }

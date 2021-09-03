@@ -38,9 +38,10 @@ export const Cards = styled.div`
 const TopStoriesNews = ({ name, type, articles, loading }) => {
   const history = useHistory()
 
-  const leftArticle = articles[type][0] || {}
+  const leftArticle = (articles[type] && articles[type][0]) || {}
   const rightArticles =
-    articles[type].filter((article, index) => index > 0) || []
+    (articles[type] && articles[type].filter((article, index) => index > 0)) ||
+    []
 
   return (
     <Container>

@@ -3,8 +3,9 @@ import { createContext, useState, useEffect, useMemo } from 'react'
 export const BookmarkContext = createContext([])
 
 const BookmarkContextProvider = (props) => {
+  const bookmarkStorage = JSON.parse(localStorage.getItem('bookmark'))
   const [bookmark, setBookmark] = useState(
-    JSON.parse(localStorage.getItem('bookmark')),
+    bookmarkStorage === null ? [] : bookmarkStorage,
   )
 
   const value = useMemo(() => {

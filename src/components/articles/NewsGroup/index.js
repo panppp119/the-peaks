@@ -30,7 +30,7 @@ const NewsGroup = ({ name, type, articles, loading }) => {
         <Loader />
       ) : (
         <Articles>
-          {articles[type].length > 0 &&
+          {articles[type] &&
             articles[type].map((article, index) => {
               const detail = {
                 title: article.webTitle,
