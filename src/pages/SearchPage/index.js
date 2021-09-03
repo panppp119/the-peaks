@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef, useCallback } from 'react'
+import { useState, useContext, useRef, useCallback } from 'react'
 import { Prompt, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -13,7 +13,7 @@ import { SearchContext } from 'contexts/searchContext'
 
 const Articles = styled.div`
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(3, 1fr);
   grid-column-gap: var(--grid-gap);
   grid-row-gap: var(--grid-gap);
 `
