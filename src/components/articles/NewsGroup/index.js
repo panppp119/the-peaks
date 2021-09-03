@@ -26,18 +26,24 @@ const NewsGroup = ({ name, type, articles, loading }) => {
         <Loader />
       ) : (
         <Articles>
-          {articles[type].map((article, index) => {
-            const detail = {
-              title: article.webTitle,
-              image: article.fields?.thumbnail,
-              path: article.id,
-              type,
-            }
+          {articles[type].length > 0 &&
+            articles[type].map((article, index) => {
+              const detail = {
+                title: article.webTitle,
+                image: article.fields?.thumbnail,
+                path: article.id,
+                type,
+              }
 
-            return (
-              <Card key={index} detail={detail} width='350px' height='347px' />
-            )
-          })}
+              return (
+                <Card
+                  key={index}
+                  detail={detail}
+                  width='350px'
+                  height='347px'
+                />
+              )
+            })}
         </Articles>
       )}
     </Container>
