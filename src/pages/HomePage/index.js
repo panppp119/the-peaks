@@ -1,4 +1,5 @@
 import { useEffect, useContext } from 'react'
+import { Prompt } from 'react-router-dom'
 
 import NewsGroup from 'components/articles/NewsGroup'
 import TopStoriesNews from 'components/articles/TopStoriesNews'
@@ -36,6 +37,8 @@ const HomePage = () => {
 
   return (
     <>
+      <Prompt message={(location) => location !== '/' && setSort('newest')} />
+
       {sections.map((section, index) => {
         const { name, type } = section
 

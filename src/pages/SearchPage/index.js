@@ -1,4 +1,4 @@
-import { useState, useContext, useRef, useCallback } from 'react'
+import { useState, useEffect, useContext, useRef, useCallback } from 'react'
 import { Prompt, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -6,10 +6,10 @@ import ContentHeader from 'components/ContentHeader'
 import SortDropdown from 'components/SortDropdown'
 import Card from 'components/articles/Card'
 import BookmarkButton from 'components/BookmarkButton'
+import Loader from 'components/Loader'
 
 import useSearch from 'hooks/useSearch'
 import { SearchContext } from 'contexts/searchContext'
-import Loader from 'components/Loader'
 
 const Articles = styled.div`
   display: grid;
@@ -70,30 +70,37 @@ const SearchPage = () => {
       />
 
       <Articles>
-        {searchResult.map((article, index) => {
-          const detail = {
-            title: article.webTitle,
-            image: article.fields?.thumbnail,
-            path: article.id,
-            type: article.sectionId,
-          }
+        {searchResult.length > 0
+          ? searchResult.map((article, index) => {
+              const detail = {
+                title: article.webTitle,
+                image: article.fields?.thumbnail,
+                path: article.id,
+                type: article.sectionId,
+              }
 
-          if (searchResult.length === index + 1) {
-            return (
-              <Card
-                key={index}
-                ref={lastArticleRef}
-                detail={detail}
-                width='350px'
-                height='347px'
-              />
-            )
-          } else {
-            return (
-              <Card key={index} detail={detail} width='350px' height='347px' />
-            )
-          }
-        })}
+              if (searchResult.length === index + 1) {
+                return (
+                  <Card
+                    key={index}
+                    ref={lastArticleRef}
+                    detail={detail}
+                    width='350px'
+                    height='347px'
+                  />
+                )
+              } else {
+                return (
+                  <Card
+                    key={index}
+                    detail={detail}
+                    width='350px'
+                    height='347px'
+                  />
+                )
+              }
+            })
+          : !loading && <p>No Data</p>}
       </Articles>
       {loading && <Loader />}
     </>

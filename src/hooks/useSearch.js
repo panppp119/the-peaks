@@ -2,12 +2,14 @@ import { useEffect, useState, useContext } from 'react'
 
 import { getArticles } from 'api/article'
 import { SearchContext } from 'contexts/searchContext'
+import { SortContext } from 'contexts/sortContext'
 
 const useSearch = (query, pageNumber) => {
   const [loading, setLoading] = useState(false)
   const [hasMore, setHasMore] = useState(false)
 
   const { setSearchResult, setSearchQuery } = useContext(SearchContext)
+  const { sort } = useContext(SortContext)
 
   useEffect(() => {
     setSearchResult([])
@@ -15,10 +17,14 @@ const useSearch = (query, pageNumber) => {
   }, [query])
 
   useEffect(() => {
+    setSearchResult([])
+  }, [sort])
+
+  useEffect(() => {
     if (query !== '') {
       getList()
     }
-  }, [query, pageNumber])
+  }, [query, pageNumber, sort])
 
   const getList = async () => {
     setLoading(true)
@@ -27,7 +33,7 @@ const useSearch = (query, pageNumber) => {
       (await getArticles({
         q: query,
         'current-page': pageNumber,
-        'order-by': 'newest',
+        'order-by': sort,
         'page-size': 15,
         'show-fields': 'thumbnail,body',
       })) || []
