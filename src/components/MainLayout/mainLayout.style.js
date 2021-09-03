@@ -51,7 +51,7 @@ export const Logo = styled(Link)`
 
 export const Content = styled.div`
   width: 100%;
-  min-height: calc(100% - (120px + 200px));
+  min-height: calc(100% - (100px + 180px));
   background-color: var(--white);
   padding: 30px 0;
 
