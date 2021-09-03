@@ -26,6 +26,10 @@ const App = () => {
 
                   <Route exact path='/bookmark' component={BookmarkPage} />
                   <Route exact path='/article/:id' component={ArticlePage} />
+
+                  <Route path='*'>
+                    <h3>Page not found.</h3>
+                  </Route>
                 </Switch>
               </BookmarkContextProvider>
             </SortContextProvider>
